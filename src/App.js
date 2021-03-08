@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
-import SubeffectHook from "./SubeffectHook";
+import CustomHook from "./FuncCompForm";
 
 // function App() {
 //   return (
@@ -25,7 +25,7 @@ import SubeffectHook from "./SubeffectHook";
 
 class App extends Component {
 	render() {
-		return <SubeffectHook />;
+		return <CustomHook />;
 	}
 }
 

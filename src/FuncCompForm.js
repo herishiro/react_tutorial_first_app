@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import usePersist from "./UsePersistHook";
 
 const AlertMessage = (props) => {
 	const data = props.data;
@@ -33,6 +34,11 @@ const FuncCompForm = () => {
 	const [name, setName] = useState("");
 	const [mail, setMail] = useState("");
 	const [age, setAge] = useState(0);
+	const [mydata, setMydata] = usePersist("mydata", {
+		name: "no name",
+		mail: "no mail",
+		age: 0,
+	});
 	const [form, setForm] = useState({
 		name: "no name",
 		mail: "no mail",
@@ -48,11 +54,13 @@ const FuncCompForm = () => {
 		setAge(event.target.value);
 	};
 	const submitForm = (event) => {
-		setForm({
+		const data = {
 			name,
 			mail,
 			age,
-		});
+		};
+		setForm(data);
+		setMydata(data);
 		event.preventDefault();
 	};
 	return (
@@ -60,7 +68,7 @@ const FuncCompForm = () => {
 			<h1 className="bg-primary text-white display-4">React</h1>
 			<div className="container">
 				<h4 className="my-3">Hooks sample</h4>
-				<AlertMessage data={form} setData={setForm} />
+				<AlertMessage data={mydata} setData={setForm} />
 				<form onSubmit={submitForm}>
 					<div className="form-group">
 						<label>Name:</label>
